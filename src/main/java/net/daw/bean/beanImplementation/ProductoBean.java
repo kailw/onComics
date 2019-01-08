@@ -23,10 +23,14 @@ import net.daw.factory.DaoFactory;
  */
 public class ProductoBean extends GenericBeanImplementation implements BeanInterface {
 
-    @Expose
-    private String codigo;
+    String titulo;
+
     @Expose
     private String desc;
+
+    @Expose
+    private String codigo;
+
     @Expose
     private int existencias;
     @Expose

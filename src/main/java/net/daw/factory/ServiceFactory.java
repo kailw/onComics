@@ -228,31 +228,7 @@ public class ServiceFactory {
                                 oReplyBean = new ReplyBean(500, "Operation doesn't exist");
                                 break;
                         }
-                        break;
-                    case "carrito":
-                        CarritoService_1 oCarritoService = new CarritoService_1(oRequest, ob);
-                        switch (op) {
-                            case "add":
-                                oReplyBean = oCarritoService.add();
-                                break;
-                            case "empty":
-                                oReplyBean = oCarritoService.empty();
-                                break;
-                            case "reduce":
-                                oReplyBean = oCarritoService.reduce();
-                                break;
-                            case "show":
-                                oReplyBean = oCarritoService.show();
-                                break;
-                            case "buy":
-                                oReplyBean = oCarritoService.buy();
-                                break;
-                            default:
-                                oReplyBean = new ReplyBean(500, "Operation doesn't exist");
-                                break;
-                        }
-                        break;
-
+                        break;                   
                     default:
                         oReplyBean = new ReplyBean(500, "Object doesn't exist");
                         break;
