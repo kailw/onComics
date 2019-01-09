@@ -57,7 +57,7 @@ public class GeneroBean extends GenericBeanImplementation implements BeanInterfa
     public String getPairs() {
         String strPairs = "";
         strPairs += "id=" + id + ",";
-        strPairs += "desc=" + EncodingHelper.quotate(desc);
+        strPairs += "`desc`=" + EncodingHelper.quotate(desc);
         strPairs += " WHERE id=" + id;
         return strPairs;
     }

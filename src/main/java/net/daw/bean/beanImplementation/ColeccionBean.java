@@ -18,8 +18,6 @@ import net.daw.helper.EncodingHelper;
 public class ColeccionBean extends GenericBeanImplementation implements BeanInterface {
 
     private String desc;
-    
-    
 
     public String getDesc() {
         return desc;

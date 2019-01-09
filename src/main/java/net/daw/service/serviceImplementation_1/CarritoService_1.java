@@ -22,7 +22,7 @@ import net.daw.connection.publicConnectionInterface.ConnectionInterface;
 import net.daw.constant.ConnectionConstants;
 import net.daw.dao.daoImplementation_1.FacturaDao_1;
 import net.daw.dao.daoImplementation_1.LineaDao_1;
-import net.daw.dao.daoImplementation_1.ProductoDao_1;
+import net.daw.dao.daoImplementation_1.ComicDao_1;
 import net.daw.dao.daoImplementation_2.FacturaDao_2;
 import net.daw.dao.daoImplementation_2.LineaDao_2;
 import net.daw.dao.daoImplementation_2.ProductoDao_2;
@@ -71,7 +71,7 @@ public class CarritoService_1 extends GenericServiceImplementation implements Se
             Integer cant = Integer.parseInt(oRequest.getParameter("cantidad"));
             oConnectionPool = ConnectionFactory.getConnection(ConnectionConstants.connectionPool);
             oConnection = oConnectionPool.newConnection();
-            ProductoDao_1 oProductoDao = new ProductoDao_1(oConnection, "producto", oUsuarioBeanSession);
+            ComicDao_1 oProductoDao = new ComicDao_1(oConnection, "producto", oUsuarioBeanSession);
             ComicBean oProductoBean = (ComicBean) oProductoDao.get(id, 1);
             Integer existencias = oProductoBean.getExistencias();
 
@@ -212,7 +212,7 @@ public class CarritoService_1 extends GenericServiceImplementation implements Se
 //            Integer cant = Integer.parseInt(oRequest.getParameter("cantidad"));
 //            oConnectionPool = ConnectionFactory.getConnection(ConnectionConstants.connectionPool);
 //            oConnection = oConnectionPool.newConnection();
-//            ProductoDao_1 oProductoDao = new ProductoDao_1(oConnection, "producto");
+//            ComicDao_1 oProductoDao = new ComicDao_1(oConnection, "producto");
 //            ComicBean oProductoBean = oProductoDao.get(id, 2);
 //
 //            Integer existencias = oProductoBean.getExistencias();
@@ -272,7 +272,7 @@ public class CarritoService_1 extends GenericServiceImplementation implements Se
             //YA TENEMOS CREADA LA FACTURA Y FATA HACER BUCLE PARA CREAR LINEAS
             LineaDao_1 oLineaDao;
             LineaBean oLineaBean;
-            ProductoDao_1 oProductoDao = new ProductoDao_1(oConnection, "producto", oUsuarioBeanSession);
+            ComicDao_1 oProductoDao = new ComicDao_1(oConnection, "producto", oUsuarioBeanSession);
             oLineaDao = new LineaDao_1(oConnection, "linea", oUsuarioBeanSession);
             ComicBean oProductoBean;
 

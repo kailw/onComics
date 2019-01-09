@@ -27,12 +27,12 @@ public class RellenarService_1 {
 
         for (int i = 0; i < numero; i++) {
             ComicBean oProductoBean = new ComicBean();
-            oProductoBean.setisbn(codigo[numeroAleatorio(codigo.length)]);
+            oProductoBean.setIsbn(codigo[numeroAleatorio(codigo.length)]);
             oProductoBean.setDesc(descUno[numeroAleatorio(descUno.length)] + " " + descDos[numeroAleatorio(descDos.length)] + " " + descTres[numeroAleatorio(descTres.length)]);
             oProductoBean.setExistencias(numeroAleatorio(5) + 1);
             oProductoBean.setFoto("fotoProducto");            
             oProductoBean.setPrecio((float) (Math.round((Math.random() * 100) * 100) / 100.0 + 1));
-            oProductoBean.setId_tipoProducto((int) Math.random() * 5 + 1);
+            oProductoBean.setId_coleccion((int) Math.random() * 5 + 1);
             alProdcutoBean.add(oProductoBean);
         }
         return alProdcutoBean;

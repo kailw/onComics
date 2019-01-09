@@ -15,6 +15,8 @@ import java.time.ZoneId;
 import java.util.Date;
 import net.daw.bean.genericBeanImplementation.GenericBeanImplementation;
 import net.daw.bean.publicBeanInterface.BeanInterface;
+import net.daw.dao.publicDaoInterface.DaoInterface;
+import net.daw.factory.DaoFactory;
 
 /**
  *
@@ -56,24 +58,17 @@ public class ComicBean extends GenericBeanImplementation implements BeanInterfac
     private String foto;
 
     @Expose(serialize = false)
-    private int id_tipoProducto;
+    private int id_coleccion;
+
     @Expose(deserialize = false)
-    private TipoproductoBean obj_tipoProducto;
+    private ColeccionBean obj_coleccion;
 
-    public TipoproductoBean getObj_tipoProducto() {
-        return obj_tipoProducto;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setObj_tipoProducto(TipoproductoBean obj_tipoProducto) {
-        this.obj_tipoProducto = obj_tipoProducto;
-    }
-
-    public String getisbn() {
-        return isbn;
-    }
-
-    public void setisbn(String isbn) {
-        this.isbn = isbn;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public String getDesc() {
@@ -84,51 +79,19 @@ public class ComicBean extends GenericBeanImplementation implements BeanInterfac
         this.desc = desc;
     }
 
-    public int getExistencias() {
-        return existencias;
+    public String getIsbn() {
+        return isbn;
     }
 
-    public void setExistencias(int existencias) {
-        this.existencias = existencias;
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
-    public float getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(float precio) {
-        this.precio = precio;
-    }
-
-    public String getFoto() {
-        return foto;
-    }
-
-    public void setFoto(String foto) {
-        this.foto = foto;
-    }
-
-    public int getId_tipoProducto() {
-        return id_tipoProducto;
-    }
-
-    public void setId_tipoProducto(int id_tipoProducto) {
-        this.id_tipoProducto = id_tipoProducto;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public Date getfechapublicacion() {
+    public Date getFechapublicacion() {
         return fechapublicacion;
     }
 
-    public void setfechapublicacion(Date fechapublicacion) {
+    public void setFechapublicacion(Date fechapublicacion) {
         this.fechapublicacion = fechapublicacion;
     }
 
@@ -156,6 +119,22 @@ public class ComicBean extends GenericBeanImplementation implements BeanInterfac
         this.color = color;
     }
 
+    public int getExistencias() {
+        return existencias;
+    }
+
+    public void setExistencias(int existencias) {
+        this.existencias = existencias;
+    }
+
+    public float getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(float precio) {
+        this.precio = precio;
+    }
+
     public float getDescuento() {
         return descuento;
     }
@@ -164,13 +143,37 @@ public class ComicBean extends GenericBeanImplementation implements BeanInterfac
         this.descuento = descuento;
     }
 
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+    public int getId_coleccion() {
+        return id_coleccion;
+    }
+
+    public void setId_coleccion(int id_coleccion) {
+        this.id_coleccion = id_coleccion;
+    }
+
+    public ColeccionBean getObj_coleccion() {
+        return obj_coleccion;
+    }
+
+    public void setObj_coleccion(ColeccionBean obj_coleccion) {
+        this.obj_coleccion = obj_coleccion;
+    }
+
     @Override
     public ComicBean fill(ResultSet oResultSet, Connection oConnection, Integer expand, UsuarioBean oUsuarioBeanSession) throws Exception, Exception {
         this.setId(oResultSet.getInt("id"));
         this.setTitulo(oResultSet.getString("titulo"));
         this.setDesc(oResultSet.getString("desc"));
-        this.setisbn(oResultSet.getString("isbn"));
-        this.setfechapublicacion(oResultSet.getDate("fechapublicacion"));
+        this.setIsbn(oResultSet.getString("isbn"));
+        this.setFechapublicacion(oResultSet.getDate("fechapublicacion"));
         this.setIdioma(oResultSet.getString("idioma"));
         this.setPagina(oResultSet.getInt("pagina"));
         this.setColor(oResultSet.getBoolean("color"));
@@ -178,6 +181,14 @@ public class ComicBean extends GenericBeanImplementation implements BeanInterfac
         this.setPrecio(oResultSet.getFloat("precio"));
         this.setDescuento(oResultSet.getFloat("descuento"));
         this.setFoto(oResultSet.getString("foto"));
+        this.setId_coleccion(oResultSet.getInt("id_coleccion"));
+        
+//        if (expand > 0) {
+//            DaoInterface ocoleccionDao = DaoFactory.getDao(oConnection, "coleccion", oUsuarioBeanSession);
+//            this.setObj_coleccion((ColeccionBean) ocoleccionDao.get(oResultSet.getInt("id_coleccion"), expand - 1));
+//        } else {
+//            this.setId_coleccion(oResultSet.getInt("id_coleccion"));
+//        }
 
         return this;
     }
@@ -196,7 +207,9 @@ public class ComicBean extends GenericBeanImplementation implements BeanInterfac
         strColumns += "existencias,";
         strColumns += "precio,";
         strColumns += "descuento,";
-        strColumns += "foto";
+        strColumns += "foto,";
+        strColumns += "id_coleccion";
+
         return strColumns;
     }
 
@@ -218,7 +231,9 @@ public class ComicBean extends GenericBeanImplementation implements BeanInterfac
         strColumns += existencias + ",";
         strColumns += precio + ",";
         strColumns += descuento + ",";
-        strColumns += EncodingHelper.quotate(foto);
+        strColumns += EncodingHelper.quotate(foto) + ",";
+        strColumns += id_coleccion;
+
         return strColumns;
     }
 
@@ -241,7 +256,9 @@ public class ComicBean extends GenericBeanImplementation implements BeanInterfac
         strPairs += "precio=" + precio + ",";
         strPairs += "descuento=" + descuento + ",";
         strPairs += "foto=" + EncodingHelper.quotate(foto) + ",";
+        strPairs += "id_coleccion=" + id_coleccion;
         strPairs += " WHERE id=" + id;
+
         return strPairs;
     }
 

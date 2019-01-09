@@ -29,7 +29,7 @@ public class BeanFactory {
             case "tipousuario":
                 oBean = new TipousuarioBean();
                 break;
-            case "producto":
+            case "comic":
                 oBean = new ComicBean();
                 break;
             case "tipoproducto":
@@ -57,7 +57,7 @@ public class BeanFactory {
             case "tipoproducto":
                 oBean = oGson.fromJson(strJsonFromClient, TipoproductoBean.class);
                 break;
-            case "producto":
+            case "comic":
                 oBean = oGson.fromJson(strJsonFromClient, ComicBean.class);
                 break;
             case "factura":

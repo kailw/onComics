@@ -18,7 +18,7 @@ import net.daw.bean.beanImplementation.ComicBean;
 import net.daw.bean.publicBeanInterface.BeanInterface;
 import net.daw.connection.publicConnectionInterface.ConnectionInterface;
 import net.daw.constant.ConnectionConstants;
-import net.daw.dao.daoImplementation_1.ProductoDao_1;
+import net.daw.dao.daoImplementation_1.ComicDao_1;
 import net.daw.dao.daoImplementation_2.ProductoDao_2;
 import net.daw.factory.ConnectionFactory;
 import net.daw.helper.EncodingHelper;

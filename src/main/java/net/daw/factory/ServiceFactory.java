@@ -5,10 +5,9 @@ import javax.servlet.http.HttpServletRequest;
 import net.daw.bean.beanImplementation.ReplyBean;
 import net.daw.bean.beanImplementation.UsuarioBean;
 import net.daw.service.serviceImplementation_0.UsuarioService_0;
-import net.daw.service.serviceImplementation_1.CarritoService_1;
 import net.daw.service.serviceImplementation_1.FacturaService_1;
 import net.daw.service.serviceImplementation_1.LineaService_1;
-import net.daw.service.serviceImplementation_1.ProductoService_1;
+import net.daw.service.serviceImplementation_1.ComicService_1;
 import net.daw.service.serviceImplementation_1.TipoproductoService_1;
 import net.daw.service.serviceImplementation_1.TipousuarioService_1;
 import net.daw.service.serviceImplementation_1.UsuarioService_1;
@@ -90,9 +89,9 @@ public class ServiceFactory {
                             case "fill":
                                 oReplyBean = oUsuarioService.cargarUsuarios();
                                 break;
-//                            case "login":
-//                                oReplyBean = oUsuarioService.login();  
-//                                break;
+                            case "login":
+                                oReplyBean = oUsuarioService.login();
+                                break;
                             case "logout":
                                 oReplyBean = oUsuarioService.logout();
                                 break;
@@ -170,8 +169,8 @@ public class ServiceFactory {
                         }
                         break;
 
-                    case "producto":
-                        ProductoService_1 oProductoService = new ProductoService_1(oRequest, ob);
+                    case "comic":
+                        ComicService_1 oProductoService = new ComicService_1(oRequest, ob);
                         switch (op) {
                             case "get":
                                 oReplyBean = oProductoService.get();
@@ -202,6 +201,32 @@ public class ServiceFactory {
                                 break;
                         }
                         break;
+//                    case "tipoproducto":
+//                        TipoproductoService_1 oTipoproductoService = new TipoproductoService_1(oRequest, ob);
+//                        switch (op) {
+//                            case "get":
+//                                oReplyBean = oTipoproductoService.get();
+//                                break;
+//                            case "create":
+//                                oReplyBean = oTipoproductoService.create();
+//                                break;
+//                            case "update":
+//                                oReplyBean = oTipoproductoService.update();
+//                                break;
+//                            case "remove":
+//                                oReplyBean = oTipoproductoService.remove();
+//                                break;
+//                            case "getcount":
+//                                oReplyBean = oTipoproductoService.getcount();
+//                                break;
+//                            case "getpage":
+//                                oReplyBean = oTipoproductoService.getpage();
+//                                break;
+//                            default:
+//                                oReplyBean = new ReplyBean(500, "Operation doesn't exist");
+//                                break;
+//                        }
+//                        break;
                     case "tipoproducto":
                         TipoproductoService_1 oTipoproductoService = new TipoproductoService_1(oRequest, ob);
                         switch (op) {
@@ -227,7 +252,7 @@ public class ServiceFactory {
                                 oReplyBean = new ReplyBean(500, "Operation doesn't exist");
                                 break;
                         }
-                        break;                   
+                        break;
                     default:
                         oReplyBean = new ReplyBean(500, "Object doesn't exist");
                         break;

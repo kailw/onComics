@@ -9,7 +9,7 @@ import java.sql.Connection;
 import net.daw.bean.beanImplementation.UsuarioBean;
 import net.daw.dao.daoImplementation_1.FacturaDao_1;
 import net.daw.dao.daoImplementation_1.LineaDao_1;
-import net.daw.dao.daoImplementation_1.ProductoDao_1;
+import net.daw.dao.daoImplementation_1.ComicDao_1;
 import net.daw.dao.daoImplementation_1.TipoproductoDao_1;
 import net.daw.dao.daoImplementation_1.TipousuarioDao_1;
 import net.daw.dao.daoImplementation_1.UsuarioDao_1;
@@ -49,8 +49,8 @@ public class DaoFactory {
                     case "tipoproducto":
                         oDao = new TipoproductoDao_1(oConnection, ob, oUsuarioBeanSession);
                         break;
-                    case "producto":
-                        oDao = new ProductoDao_1(oConnection, ob, oUsuarioBeanSession);
+                    case "comic":
+                        oDao = new ComicDao_1(oConnection, ob, oUsuarioBeanSession);
                         break;
                     case "factura":
                         oDao = new FacturaDao_1(oConnection, ob, oUsuarioBeanSession);
