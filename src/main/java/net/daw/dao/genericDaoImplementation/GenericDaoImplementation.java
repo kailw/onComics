@@ -67,7 +67,6 @@ public class GenericDaoImplementation implements DaoInterface {
             if (oResultSet.next()) {
                 oBean = BeanFactory.getBean(ob);
                 oBean.fill(oResultSet, oConnection, expand, oUsuarioBeanSession);
-
             } else {
                 oBean = null;
             }
@@ -87,7 +86,6 @@ public class GenericDaoImplementation implements DaoInterface {
     @Override
     public int remove(int id) throws Exception {
         int iRes = 0;
-        //String strSQL = "DELETE FROM " + ob + " WHERE id=?";
         PreparedStatement oPreparedStatement = null;
         try {
             oPreparedStatement = oConnection.prepareStatement(strSQL_remove);
@@ -105,7 +103,6 @@ public class GenericDaoImplementation implements DaoInterface {
 
     @Override
     public int getcount() throws Exception {
-        //String strSQL = "SELECT COUNT(id) FROM " + ob;
         int res = 0;
         ResultSet oResultSet = null;
         PreparedStatement oPreparedStatement = null;
@@ -125,7 +122,7 @@ public class GenericDaoImplementation implements DaoInterface {
                 oPreparedStatement.close();
             }
         }
-        return res;        
+        return res;
     }
 
     @Override
@@ -163,7 +160,6 @@ public class GenericDaoImplementation implements DaoInterface {
         int iResult = 0;
         String strSQL = "UPDATE " + ob + " SET ";
         strSQL += oBean.getPairs();
-
         PreparedStatement oPreparedStatement = null;
         try {
             oPreparedStatement = oConnection.prepareStatement(strSQL);

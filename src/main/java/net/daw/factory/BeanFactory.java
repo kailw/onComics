@@ -8,7 +8,7 @@ package net.daw.factory;
 import com.google.gson.Gson;
 import net.daw.bean.beanImplementation.FacturaBean;
 import net.daw.bean.beanImplementation.LineaBean;
-import net.daw.bean.beanImplementation.ProductoBean;
+import net.daw.bean.beanImplementation.ComicBean;
 import net.daw.bean.beanImplementation.TipoproductoBean;
 import net.daw.bean.beanImplementation.TipousuarioBean;
 import net.daw.bean.beanImplementation.UsuarioBean;
@@ -30,7 +30,7 @@ public class BeanFactory {
                 oBean = new TipousuarioBean();
                 break;
             case "producto":
-                oBean = new ProductoBean();
+                oBean = new ComicBean();
                 break;
             case "tipoproducto":
                 oBean = new TipoproductoBean();
@@ -58,7 +58,7 @@ public class BeanFactory {
                 oBean = oGson.fromJson(strJsonFromClient, TipoproductoBean.class);
                 break;
             case "producto":
-                oBean = oGson.fromJson(strJsonFromClient, ProductoBean.class);
+                oBean = oGson.fromJson(strJsonFromClient, ComicBean.class);
                 break;
             case "factura":
                 oBean = oGson.fromJson(strJsonFromClient, FacturaBean.class);

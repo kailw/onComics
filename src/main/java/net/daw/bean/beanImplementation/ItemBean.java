@@ -11,7 +11,7 @@ package net.daw.bean.beanImplementation;
  */
 public class ItemBean {
     int cantidad;
-    ProductoBean obj_Producto;
+    ComicBean obj_Producto;
 
     public int getCantidad() {
         return cantidad;
@@ -21,11 +21,11 @@ public class ItemBean {
         this.cantidad = cantidad;
     }
 
-    public ProductoBean getObj_Producto() {
+    public ComicBean getObj_Producto() {
         return obj_Producto;
     }
 
-    public void setObj_Producto(ProductoBean obj_Producto) {
+    public void setObj_Producto(ComicBean obj_Producto) {
         this.obj_Producto = obj_Producto;
     }
     

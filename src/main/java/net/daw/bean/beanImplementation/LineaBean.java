@@ -31,15 +31,15 @@ public class LineaBean extends GenericBeanImplementation implements BeanInterfac
     private int id_factura;
 
     @Expose(deserialize = false)
-    private ProductoBean obj_Producto;
+    private ComicBean obj_Producto;
     @Expose(deserialize = false)
     private FacturaBean obj_Factura;
 
-    public ProductoBean getObj_Producto() {
+    public ComicBean getObj_Producto() {
         return obj_Producto;
     }
 
-    public void setObj_Producto(ProductoBean obj_Producto) {
+    public void setObj_Producto(ComicBean obj_Producto) {
         this.obj_Producto = obj_Producto;
     }
 
@@ -83,7 +83,7 @@ public class LineaBean extends GenericBeanImplementation implements BeanInterfac
 
         if (expand > 0) {
             DaoInterface oProductoDao = DaoFactory.getDao(oConnection, "producto", oUsuarioBeanSession);
-           this.setObj_Producto((ProductoBean) oProductoDao.get(oResultSet.getInt("id_producto"), expand - 1));
+            this.setObj_Producto((ComicBean) oProductoDao.get(oResultSet.getInt("id_producto"), expand - 1));
         } else {
             this.setId_producto(oResultSet.getInt("id_producto"));
         }
@@ -97,22 +97,6 @@ public class LineaBean extends GenericBeanImplementation implements BeanInterfac
 
         return this;
     }
-//        if (expand > 0) {
-//            ProductoDao_1 oproductoDao = new ProductoDao_1(oConnection, "producto", oUsuarioBeanSession);
-//            this.setObj_Producto((ProductoBean) oproductoDao.get(oResultSet.getInt("id_producto"), expand - 1));
-//        } else {
-//            this.setId_producto(oResultSet.getInt("id_producto"));
-//        }
-//
-//        if (expand > 0) {
-//            FacturaDao_1 oFacturaDao = new FacturaDao_1(oConnection, "factura", oUsuarioBeanSession);
-//            this.setObj_Factura((FacturaBean) oFacturaDao.get(oResultSet.getInt("id_factura"), expand - 1));
-//        } else {
-//            this.setId_factura(oResultSet.getInt("id_factura"));
-//        }
-//
-//        return this;
-//    }
 
     @Override
     public String getColumns() {
