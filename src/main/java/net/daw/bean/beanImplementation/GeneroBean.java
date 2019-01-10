@@ -5,6 +5,7 @@
  */
 package net.daw.bean.beanImplementation;
 
+import com.google.gson.annotations.Expose;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import net.daw.bean.genericBeanImplementation.GenericBeanImplementation;
@@ -17,6 +18,7 @@ import net.daw.helper.EncodingHelper;
  */
 public class GeneroBean extends GenericBeanImplementation implements BeanInterface {
 
+    @Expose
     private String desc;
 
     public String getDesc() {

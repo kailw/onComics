@@ -6,9 +6,13 @@
 package net.daw.factory;
 
 import com.google.gson.Gson;
+import net.daw.bean.beanImplementation.AutorBean;
+import net.daw.bean.beanImplementation.ColeccionBean;
 import net.daw.bean.beanImplementation.FacturaBean;
 import net.daw.bean.beanImplementation.LineaBean;
 import net.daw.bean.beanImplementation.ComicBean;
+import net.daw.bean.beanImplementation.EditorialBean;
+import net.daw.bean.beanImplementation.GeneroBean;
 import net.daw.bean.beanImplementation.TipoproductoBean;
 import net.daw.bean.beanImplementation.TipousuarioBean;
 import net.daw.bean.beanImplementation.UsuarioBean;
@@ -31,6 +35,18 @@ public class BeanFactory {
                 break;
             case "comic":
                 oBean = new ComicBean();
+                break;
+            case "genero":
+                oBean = new GeneroBean();
+                break;
+            case "editorial":
+                oBean = new EditorialBean();
+                break;
+            case "coleccion":
+                oBean = new ColeccionBean();
+                break;
+            case "autor":
+                oBean = new AutorBean();
                 break;
             case "tipoproducto":
                 oBean = new TipoproductoBean();
@@ -59,6 +75,18 @@ public class BeanFactory {
                 break;
             case "comic":
                 oBean = oGson.fromJson(strJsonFromClient, ComicBean.class);
+                break;
+            case "genero":
+                oBean = oGson.fromJson(strJsonFromClient, GeneroBean.class);
+                break;
+            case "editorial":
+                oBean = oGson.fromJson(strJsonFromClient, EditorialBean.class);
+                break;
+            case "coleccion":
+                oBean = oGson.fromJson(strJsonFromClient, ColeccionBean.class);
+                break;
+            case "autor":
+                oBean = oGson.fromJson(strJsonFromClient, AutorBean.class);
                 break;
             case "factura":
                 oBean = oGson.fromJson(strJsonFromClient, FacturaBean.class);
