@@ -7,6 +7,7 @@ import net.daw.bean.beanImplementation.UsuarioBean;
 import net.daw.service.serviceImplementation_0.UsuarioService_0;
 import net.daw.service.serviceImplementation_1.AutorService_1;
 import net.daw.service.serviceImplementation_1.ColeccionService_1;
+import net.daw.service.serviceImplementation_1.ComicGeneroService_1;
 import net.daw.service.serviceImplementation_1.FacturaService_1;
 import net.daw.service.serviceImplementation_1.LineaService_1;
 import net.daw.service.serviceImplementation_1.ComicService_1;
@@ -303,6 +304,32 @@ public class ServiceFactory {
                                 break;
                             case "getpage":
                                 oReplyBean = oAutorService.getpage();
+                                break;
+                            default:
+                                oReplyBean = new ReplyBean(500, "Operation doesn't exist");
+                                break;
+                        }
+                        break;
+                    case "comicgenero":
+                        ComicGeneroService_1 oComicGeneroService = new ComicGeneroService_1(oRequest, ob);
+                        switch (op) {
+                            case "get":
+                                oReplyBean = oComicGeneroService.get();
+                                break;
+                            case "create":
+                                oReplyBean = oComicGeneroService.create();
+                                break;
+                            case "update":
+                                oReplyBean = oComicGeneroService.update();
+                                break;
+                            case "remove":
+                                oReplyBean = oComicGeneroService.remove();
+                                break;
+                            case "getcount":
+                                oReplyBean = oComicGeneroService.getcount();
+                                break;
+                            case "getpage":
+                                oReplyBean = oComicGeneroService.getpage();
                                 break;
                             default:
                                 oReplyBean = new ReplyBean(500, "Operation doesn't exist");

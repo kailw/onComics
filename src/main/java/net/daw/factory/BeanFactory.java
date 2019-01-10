@@ -11,6 +11,7 @@ import net.daw.bean.beanImplementation.ColeccionBean;
 import net.daw.bean.beanImplementation.FacturaBean;
 import net.daw.bean.beanImplementation.LineaBean;
 import net.daw.bean.beanImplementation.ComicBean;
+import net.daw.bean.beanImplementation.ComicGeneroBean;
 import net.daw.bean.beanImplementation.EditorialBean;
 import net.daw.bean.beanImplementation.GeneroBean;
 import net.daw.bean.beanImplementation.TipoproductoBean;
@@ -47,6 +48,9 @@ public class BeanFactory {
                 break;
             case "autor":
                 oBean = new AutorBean();
+                break;
+            case "comicgenero":
+                oBean = new ComicGeneroBean();
                 break;
             case "tipoproducto":
                 oBean = new TipoproductoBean();
@@ -87,6 +91,9 @@ public class BeanFactory {
                 break;
             case "autor":
                 oBean = oGson.fromJson(strJsonFromClient, AutorBean.class);
+                break;
+            case "comicgenero":
+                oBean = oGson.fromJson(strJsonFromClient, ComicGeneroBean.class);
                 break;
             case "factura":
                 oBean = oGson.fromJson(strJsonFromClient, FacturaBean.class);

@@ -23,6 +23,7 @@ import net.daw.dao.publicDaoInterface.DaoInterface;
 import net.daw.dao.daoImplementation_0.*;
 import net.daw.dao.daoImplementation_1.AutorDao_1;
 import net.daw.dao.daoImplementation_1.ColeccionDao_1;
+import net.daw.dao.daoImplementation_1.ComicGeneroDao_1;
 import net.daw.dao.daoImplementation_1.EditorialDao_1;
 import net.daw.dao.daoImplementation_1.GeneroDao_1;
 
@@ -67,6 +68,9 @@ public class DaoFactory {
                         break;
                     case "autor":
                         oDao = new AutorDao_1(oConnection, ob, oUsuarioBeanSession);
+                        break;
+                    case "comicgenero":
+                        oDao = new ComicGeneroDao_1(oConnection, ob, oUsuarioBeanSession);
                         break;
                     case "factura":
                         oDao = new FacturaDao_1(oConnection, ob, oUsuarioBeanSession);

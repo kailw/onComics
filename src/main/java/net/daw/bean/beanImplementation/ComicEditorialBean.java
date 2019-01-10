@@ -5,6 +5,9 @@
  */
 package net.daw.bean.beanImplementation;
 
+import com.google.gson.annotations.Expose;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import net.daw.bean.genericBeanImplementation.GenericBeanImplementation;
 import net.daw.bean.publicBeanInterface.BeanInterface;
 
@@ -14,9 +17,33 @@ import net.daw.bean.publicBeanInterface.BeanInterface;
  */
 public class ComicEditorialBean extends GenericBeanImplementation implements BeanInterface {
 
+    @Expose(serialize = false)
+    private int id_editorial;
+
+    @Expose(serialize = false)
+    private int id_comic;
+
+    @Expose(deserialize = false)
     private EditorialBean obj_editorial;
 
+    @Expose(deserialize = false)
     private ComicBean obj_comic;
+
+    public int getId_editorial() {
+        return id_editorial;
+    }
+
+    public void setId_editorial(int id_editorial) {
+        this.id_editorial = id_editorial;
+    }
+
+    public int getId_comic() {
+        return id_comic;
+    }
+
+    public void setId_comic(int id_comic) {
+        this.id_comic = id_comic;
+    }
 
     public EditorialBean getObj_editorial() {
         return obj_editorial;
@@ -33,4 +60,57 @@ public class ComicEditorialBean extends GenericBeanImplementation implements Bea
     public void setObj_comic(ComicBean obj_comic) {
         this.obj_comic = obj_comic;
     }
+
+    @Override
+    public ComicEditorialBean fill(ResultSet oResultSet, Connection oConnection, Integer expand, UsuarioBean oUsuarioBeanSession) throws Exception, Exception {
+        this.setId(oResultSet.getInt("id"));
+//        if (expand > 0) {
+//            DaoInterface ocomicDao = DaoFactory.getDao(oConnection, "comic", oUsuarioBeanSession);
+//            this.setObj_comic((ComicBean) ocomicDao.get(oResultSet.getInt("id_comic"), expand - 1));
+//        } else {
+//            this.setId_comic(oResultSet.getInt("id_comic"));
+//        }
+//
+//        if (expand > 0) {
+//            DaoInterface ogeneroDao = DaoFactory.getDao(oConnection, "genero", oUsuarioBeanSession);
+//            this.setObj_genero((GeneroBean) ogeneroDao.get(oResultSet.getInt("id_genero"), expand - 1));
+//        } else {
+//            this.setId_genero(oResultSet.getInt("id_genero"));
+//        }
+        
+        
+        return this;
+    }
+
+    @Override
+    public String getColumns() {
+        String strColumns = "";
+        strColumns += "id,";
+        strColumns += "id_genero,";
+        strColumns += "id_comic";
+
+        return strColumns;
+    }
+
+    @Override
+    public String getValues() {
+        String strColumns = "";
+        strColumns += "null,";
+        strColumns += id_editorial + ",";
+        strColumns += id_comic;
+
+        return strColumns;
+    }
+
+    @Override
+    public String getPairs() {
+        String strPairs = "";
+        strPairs += "id=" + id + ",";
+        strPairs += "id_genero=" + id_editorial + ",";
+        strPairs += "id_comic=" + id_comic;
+        strPairs += " WHERE id=" + id;
+
+        return strPairs;
+    }
+
 }

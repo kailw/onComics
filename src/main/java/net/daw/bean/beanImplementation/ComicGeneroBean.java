@@ -5,10 +5,13 @@
  */
 package net.daw.bean.beanImplementation;
 
+import com.google.gson.annotations.Expose;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import net.daw.bean.genericBeanImplementation.GenericBeanImplementation;
 import net.daw.bean.publicBeanInterface.BeanInterface;
+import net.daw.dao.publicDaoInterface.DaoInterface;
+import net.daw.factory.DaoFactory;
 
 /**
  *
@@ -16,12 +19,15 @@ import net.daw.bean.publicBeanInterface.BeanInterface;
  */
 public class ComicGeneroBean extends GenericBeanImplementation implements BeanInterface {
 
+    @Expose(serialize = false)
     private int id_genero;
-
+    @Expose(serialize = false)
     private int id_comic;
 
+    @Expose(deserialize = false)
     private GeneroBean obj_genero;
 
+    @Expose(deserialize = false)
     private ComicBean obj_comic;
 
     public int getId_genero() {
@@ -59,8 +65,20 @@ public class ComicGeneroBean extends GenericBeanImplementation implements BeanIn
     @Override
     public ComicGeneroBean fill(ResultSet oResultSet, Connection oConnection, Integer expand, UsuarioBean oUsuarioBeanSession) throws Exception, Exception {
         this.setId(oResultSet.getInt("id"));
-        this.setId_genero(oResultSet.getInt("id_genero"));
-        this.setId_comic(oResultSet.getInt("id_comic"));
+
+        if (expand > 0) {
+            DaoInterface ocomicDao = DaoFactory.getDao(oConnection, "comic", oUsuarioBeanSession);
+            this.setObj_comic((ComicBean) ocomicDao.get(oResultSet.getInt("id_comic"), expand - 1));
+        } else {
+            this.setId_comic(oResultSet.getInt("id_comic"));
+        }
+
+        if (expand > 0) {
+            DaoInterface ogeneroDao = DaoFactory.getDao(oConnection, "genero", oUsuarioBeanSession);
+            this.setObj_genero((GeneroBean) ogeneroDao.get(oResultSet.getInt("id_genero"), expand - 1));
+        } else {
+            this.setId_genero(oResultSet.getInt("id_genero"));
+        }
 
         return this;
     }

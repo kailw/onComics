@@ -82,10 +82,10 @@ public class LineaBean extends GenericBeanImplementation implements BeanInterfac
         this.setCantidad(oResultSet.getInt("cantidad"));
 
         if (expand > 0) {
-            DaoInterface oProductoDao = DaoFactory.getDao(oConnection, "producto", oUsuarioBeanSession);
-            this.setObj_Producto((ComicBean) oProductoDao.get(oResultSet.getInt("id_producto"), expand - 1));
+            DaoInterface oProductoDao = DaoFactory.getDao(oConnection, "comic", oUsuarioBeanSession);
+            this.setObj_Producto((ComicBean) oProductoDao.get(oResultSet.getInt("id_comic"), expand - 1));
         } else {
-            this.setId_producto(oResultSet.getInt("id_producto"));
+            this.setId_producto(oResultSet.getInt("id_comic"));
         }
 
         if (expand > 0) {

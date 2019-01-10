@@ -9,18 +9,13 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.sql.Connection;
 import java.util.ArrayList;
-import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import net.daw.bean.beanImplementation.LineaBean;
 import net.daw.bean.beanImplementation.ReplyBean;
-import net.daw.bean.beanImplementation.UsuarioBean;
-import net.daw.bean.publicBeanInterface.BeanInterface;
 import net.daw.connection.publicConnectionInterface.ConnectionInterface;
 import net.daw.constant.ConnectionConstants;
 import net.daw.dao.daoImplementation_1.LineaDao_1;
 import net.daw.factory.ConnectionFactory;
-import net.daw.helper.EncodingHelper;
-import net.daw.helper.ParameterCook;
 import net.daw.service.genericServiceImplementation.GenericServiceImplementation;
 import net.daw.service.publicServiceInterface.ServiceInterface;
 
