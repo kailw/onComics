@@ -17,26 +17,40 @@ import net.daw.factory.DaoFactory;
  *
  * @author kevin
  */
-public class ComicEditorialBean extends GenericBeanImplementation implements BeanInterface {
+public class AutorEspecialidadBean extends GenericBeanImplementation implements BeanInterface {
 
     @Expose(serialize = false)
-    private int id_editorial;
+    private int id_especialidad;
+
+    @Expose(serialize = false)
+    private int id_autor;
 
     @Expose(serialize = false)
     private int id_comic;
 
     @Expose(deserialize = false)
-    private EditorialBean obj_editorial;
+    private EspecialidadBean obj_especialidad;
+
+    @Expose(deserialize = false)
+    private AutorBean obj_autor;
 
     @Expose(deserialize = false)
     private ComicBean obj_comic;
 
-    public int getId_editorial() {
-        return id_editorial;
+    public int getId_especialidad() {
+        return id_especialidad;
     }
 
-    public void setId_editorial(int id_editorial) {
-        this.id_editorial = id_editorial;
+    public void setId_especialidad(int id_especialidad) {
+        this.id_especialidad = id_especialidad;
+    }
+
+    public int getId_autor() {
+        return id_autor;
+    }
+
+    public void setId_autor(int id_autor) {
+        this.id_autor = id_autor;
     }
 
     public int getId_comic() {
@@ -47,12 +61,20 @@ public class ComicEditorialBean extends GenericBeanImplementation implements Bea
         this.id_comic = id_comic;
     }
 
-    public EditorialBean getObj_editorial() {
-        return obj_editorial;
+    public EspecialidadBean getObj_especialidad() {
+        return obj_especialidad;
     }
 
-    public void setObj_editorial(EditorialBean obj_editorial) {
-        this.obj_editorial = obj_editorial;
+    public void setObj_especialidad(EspecialidadBean obj_especialidad) {
+        this.obj_especialidad = obj_especialidad;
+    }
+
+    public AutorBean getObj_autor() {
+        return obj_autor;
+    }
+
+    public void setObj_autor(AutorBean obj_autor) {
+        this.obj_autor = obj_autor;
     }
 
     public ComicBean getObj_comic() {
@@ -64,21 +86,28 @@ public class ComicEditorialBean extends GenericBeanImplementation implements Bea
     }
 
     @Override
-    public ComicEditorialBean fill(ResultSet oResultSet, Connection oConnection, Integer expand, UsuarioBean oUsuarioBeanSession) throws Exception, Exception {
+    public AutorEspecialidadBean fill(ResultSet oResultSet, Connection oConnection, Integer expand, UsuarioBean oUsuarioBeanSession) throws Exception, Exception {
         this.setId(oResultSet.getInt("id"));
 
         if (expand > 0) {
-            DaoInterface oeditorialDao = DaoFactory.getDao(oConnection, "editorial", oUsuarioBeanSession);
-            this.setObj_editorial((EditorialBean) oeditorialDao.get(oResultSet.getInt("id_editorial"), expand - 1));
+            DaoInterface oeditorialDao = DaoFactory.getDao(oConnection, "especialidad", oUsuarioBeanSession);
+            this.setObj_especialidad((EspecialidadBean) oeditorialDao.get(oResultSet.getInt("id_especialidad"), expand - 1));
         } else {
-            this.setId_editorial(oResultSet.getInt("id_editorial"));
+            this.setId_especialidad(oResultSet.getInt("id_especialidad"));
+        }
+
+        if (expand > 0) {
+            DaoInterface oautorDao = DaoFactory.getDao(oConnection, "autor", oUsuarioBeanSession);
+            this.setObj_autor((AutorBean) oautorDao.get(oResultSet.getInt("id_autor"), expand - 1));
+        } else {
+            this.setId_autor(oResultSet.getInt("id_autor"));
         }
 
         if (expand > 0) {
             DaoInterface ocomicDao = DaoFactory.getDao(oConnection, "comic", oUsuarioBeanSession);
             this.setObj_comic((ComicBean) ocomicDao.get(oResultSet.getInt("id_comic"), expand - 1));
         } else {
-            this.setId_editorial(oResultSet.getInt("id_comic"));
+            this.setId_comic(oResultSet.getInt("id_comic"));
         }
 
         return this;
@@ -88,7 +117,8 @@ public class ComicEditorialBean extends GenericBeanImplementation implements Bea
     public String getColumns() {
         String strColumns = "";
         strColumns += "id,";
-        strColumns += "id_editorial,";
+        strColumns += "id_especialidad,";
+        strColumns += "id_autor,";
         strColumns += "id_comic";
 
         return strColumns;
@@ -98,7 +128,8 @@ public class ComicEditorialBean extends GenericBeanImplementation implements Bea
     public String getValues() {
         String strColumns = "";
         strColumns += "null,";
-        strColumns += id_editorial + ",";
+        strColumns += id_especialidad + ",";
+        strColumns += id_autor + ",";
         strColumns += id_comic;
 
         return strColumns;
@@ -108,7 +139,8 @@ public class ComicEditorialBean extends GenericBeanImplementation implements Bea
     public String getPairs() {
         String strPairs = "";
         strPairs += "id=" + id + ",";
-        strPairs += "id_editorial=" + id_editorial + ",";
+        strPairs += "id_especialidad=" + id_especialidad + ",";
+        strPairs += "id_autor=" + id_autor + ",";
         strPairs += "id_comic=" + id_comic;
         strPairs += " WHERE id=" + id;
 

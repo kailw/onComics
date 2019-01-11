@@ -14,11 +14,10 @@ import net.daw.dao.publicDaoInterface.DaoInterface;
  *
  * @author a044531896d
  */
-public class ComicGeneroDao_1 extends GenericDaoImplementation implements DaoInterface {
+public class ComicEditorialDao_1 extends GenericDaoImplementation implements DaoInterface {
 
-    public ComicGeneroDao_1(Connection oConnection, String ob, UsuarioBean oUsuarioBeanSession) {
+    public ComicEditorialDao_1(Connection oConnection, String ob, UsuarioBean oUsuarioBeanSession) {
         super(oConnection, ob, oUsuarioBeanSession);
-
     }
 
 }

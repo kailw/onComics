@@ -25,7 +25,7 @@ import net.daw.dao.daoImplementation_1.LineaDao_1;
 import net.daw.dao.daoImplementation_1.ComicDao_1;
 import net.daw.dao.daoImplementation_2.FacturaDao_2;
 import net.daw.dao.daoImplementation_2.LineaDao_2;
-import net.daw.dao.daoImplementation_2.ProductoDao_2;
+import net.daw.dao.daoImplementation_2.ComicDao_2;
 import net.daw.factory.ConnectionFactory;
 import net.daw.helper.EncodingHelper;
 import net.daw.service.genericServiceImplementation.GenericServiceImplementation;

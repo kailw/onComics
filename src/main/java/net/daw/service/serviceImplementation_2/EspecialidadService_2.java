@@ -13,15 +13,14 @@ import net.daw.service.publicServiceInterface.ServiceInterface;
  *
  * @author a044531896d
  */
-public class TipoproductoService_2 extends GenericServiceImplementation implements ServiceInterface {
+public class EspecialidadService_2 extends GenericServiceImplementation implements ServiceInterface {
 
-    HttpServletRequest oRequest;
-    String ob = null;
+    protected HttpServletRequest oRequest;
+    protected String ob = null;
 
-    public TipoproductoService_2(HttpServletRequest oRequest, String ob) {
+    public EspecialidadService_2(HttpServletRequest oRequest, String ob) {
         super(oRequest, ob);
         this.oRequest = oRequest;
         this.ob = ob;
     }
-
 }

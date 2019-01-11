@@ -62,9 +62,7 @@ public class UsuarioService_0 extends GenericServiceImplementation implements Se
 
     public ReplyBean check() throws Exception {
         ReplyBean oReplyBean;
-        //Aquí  no haría falta el usuarioBean de session, ya lo cogemos del generic, pero lo dejo por ahora:
-        UsuarioBean oUsuarioBean;
-        oUsuarioBean = (UsuarioBean) oRequest.getSession().getAttribute("user");
+        UsuarioBean oUsuarioBean = (UsuarioBean) oRequest.getSession().getAttribute("user");
         if (oUsuarioBean != null) {
             Gson oGson = (new GsonBuilder()).excludeFieldsWithoutExposeAnnotation().create();
             oReplyBean = new ReplyBean(200, oGson.toJson(oUsuarioBean));

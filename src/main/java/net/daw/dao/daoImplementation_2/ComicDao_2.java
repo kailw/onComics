@@ -15,9 +15,9 @@ import net.daw.dao.publicDaoInterface.DaoInterface;
  *
  * @author a044531896d
  */
-public class ProductoDao_2 extends GenericDaoImplementation implements DaoInterface {
+public class ComicDao_2 extends GenericDaoImplementation implements DaoInterface {
 
-    public ProductoDao_2(Connection oConnection, String ob, UsuarioBean oUsuarioBeanSession) {
+    public ComicDao_2(Connection oConnection, String ob, UsuarioBean oUsuarioBeanSession) {
         super(oConnection, ob, oUsuarioBeanSession);
     }
 

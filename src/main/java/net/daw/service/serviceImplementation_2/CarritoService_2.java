@@ -22,7 +22,7 @@ import net.daw.connection.publicConnectionInterface.ConnectionInterface;
 import net.daw.constant.ConnectionConstants;
 import net.daw.dao.daoImplementation_1.LineaDao_1;
 import net.daw.dao.daoImplementation_2.FacturaDao_2;
-import net.daw.dao.daoImplementation_2.ProductoDao_2;
+import net.daw.dao.daoImplementation_2.ComicDao_2;
 import net.daw.factory.ConnectionFactory;
 import net.daw.helper.EncodingHelper;
 import net.daw.service.genericServiceImplementation.GenericServiceImplementation;
@@ -68,7 +68,7 @@ public class CarritoService_2 extends GenericServiceImplementation implements Se
             Integer cant = Integer.parseInt(oRequest.getParameter("cantidad"));
             oConnectionPool = ConnectionFactory.getConnection(ConnectionConstants.connectionPool);
             oConnection = oConnectionPool.newConnection();
-            ProductoDao_2 oProductoDao = new ProductoDao_2(oConnection, "producto", oUsuarioBeanSession);
+            ComicDao_2 oProductoDao = new ComicDao_2(oConnection, "producto", oUsuarioBeanSession);
             ComicBean oProductoBean = (ComicBean) oProductoDao.get(id, 1);
             Integer existencias = oProductoBean.getExistencias();
 
@@ -269,7 +269,7 @@ public class CarritoService_2 extends GenericServiceImplementation implements Se
             //YA TENEMOS CREADA LA FACTURA Y FATA HACER BUCLE PARA CREAR LINEAS
             LineaDao_1 oLineaDao;
             LineaBean oLineaBean;
-            ProductoDao_2 oProductoDao = new ProductoDao_2(oConnection, "producto", oUsuarioBeanSession);
+            ComicDao_2 oProductoDao = new ComicDao_2(oConnection, "producto", oUsuarioBeanSession);
             oLineaDao = new LineaDao_1(oConnection, "linea", oUsuarioBeanSession);
             ComicBean oProductoBean;
 

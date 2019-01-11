@@ -36,7 +36,6 @@ public class GenericServiceImplementation implements ServiceInterface {
 
     public GenericServiceImplementation(HttpServletRequest oRequest, String ob) {
         this.oRequest = oRequest;
-        ob = oRequest.getParameter("ob");
         this.ob = ob;
         usuarioSession = (UsuarioBean) oRequest.getSession().getAttribute("user");
     }

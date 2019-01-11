@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package net.daw.dao.daoImplementation_0;
+package net.daw.dao.daoImplementation_2;
 
-import net.daw.dao.daoImplementation_2.*;
 import java.sql.Connection;
 import net.daw.bean.beanImplementation.UsuarioBean;
 import net.daw.bean.publicBeanInterface.BeanInterface;
@@ -16,9 +15,9 @@ import net.daw.dao.publicDaoInterface.DaoInterface;
  *
  * @author a044531896d
  */
-public class ProductoDao_0 extends GenericDaoImplementation implements DaoInterface {
+public class EditorialDao_2 extends GenericDaoImplementation implements DaoInterface {
 
-    public ProductoDao_0(Connection oConnection, String ob, UsuarioBean oUsuarioBeanSession) {
+    public EditorialDao_2(Connection oConnection, String ob, UsuarioBean oUsuarioBeanSession) {
         super(oConnection, ob, oUsuarioBeanSession);
     }
 
@@ -31,6 +30,5 @@ public class ProductoDao_0 extends GenericDaoImplementation implements DaoInterf
     public BeanInterface create(BeanInterface oBean) throws Exception {
         throw new Exception("Error en Dao create de " + ob + ": No autorizado");
     }
-
 
 }
