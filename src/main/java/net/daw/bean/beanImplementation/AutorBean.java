@@ -41,7 +41,7 @@ public class AutorBean extends GenericBeanImplementation implements BeanInterfac
     public String getColumns() {
         String strColumns = "";
         strColumns += "id,";
-        strColumns += "`nombre`";
+        strColumns += "nombre";
 
         return strColumns;
     }

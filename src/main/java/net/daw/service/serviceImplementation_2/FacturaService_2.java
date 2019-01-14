@@ -28,8 +28,8 @@ import net.daw.service.publicServiceInterface.ServiceInterface;
  */
 public class FacturaService_2 extends GenericServiceImplementation implements ServiceInterface {
 
-    HttpServletRequest oRequest;
-    String ob = null;
+    protected HttpServletRequest oRequest;
+    protected String ob = null;
 
     public FacturaService_2(HttpServletRequest oRequest, String ob) {
         super(oRequest, ob);
@@ -37,7 +37,7 @@ public class FacturaService_2 extends GenericServiceImplementation implements Se
         this.ob = ob;
     }
 
-    public ReplyBean getcountFacturaUser() throws Exception {
+    public ReplyBean getcountusuario() throws Exception {
         ReplyBean oReplyBean;
         ConnectionInterface oConnectionPool = null;
         Connection oConnection;
@@ -46,20 +46,19 @@ public class FacturaService_2 extends GenericServiceImplementation implements Se
             oConnectionPool = ConnectionFactory.getConnection(ConnectionConstants.connectionPool);
             oConnection = oConnectionPool.newConnection();
             FacturaDao_2 oFacturaDao = (FacturaDao_2) DaoFactory.getDao(oConnection, ob, usuarioSession);
-            int registros = oFacturaDao.getcountFacturaUser(id);
+            int registros = oFacturaDao.getcountusuario(id);
             Gson oGson = (new GsonBuilder()).excludeFieldsWithoutExposeAnnotation().create();
             oReplyBean = new ReplyBean(200, oGson.toJson(registros));
         } catch (Exception ex) {
-            throw new Exception("ERROR: Service level: getcount method: " + ob + " object", ex);
+            throw new Exception("ERROR: Service level: getcount method: " + ob +  " object" + ex.getMessage(), ex);
         } finally {
             oConnectionPool.disposeConnection();
         }
 
         return oReplyBean;
-
     }
 
-    public ReplyBean getpageXusuario() throws Exception {
+    public ReplyBean getpageusuario() throws Exception {
         ReplyBean oReplyBean;
         ConnectionInterface oConnectionPool = null;
         Connection oConnection;
@@ -71,7 +70,7 @@ public class FacturaService_2 extends GenericServiceImplementation implements Se
             oConnectionPool = ConnectionFactory.getConnection(ConnectionConstants.connectionPool);
             oConnection = oConnectionPool.newConnection();
             FacturaDao_2 oFacturaDao = (FacturaDao_2) DaoFactory.getDao(oConnection, ob, usuarioSession);
-            ArrayList<FacturaBean> alLineaBean = oFacturaDao.getpageXusuario(iRpp, iPage, hmOrder, id_usuario, 1);
+            ArrayList<FacturaBean> alLineaBean = oFacturaDao.getpageusuario(iRpp, iPage, hmOrder, id_usuario, 1);
             Gson oGson = (new GsonBuilder()).excludeFieldsWithoutExposeAnnotation().create();
             oReplyBean = new ReplyBean(200, oGson.toJson(alLineaBean));
         } catch (Exception ex) {

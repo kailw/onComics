@@ -7,15 +7,9 @@ package net.daw.service.serviceImplementation_2;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import java.sql.Connection;
-import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import net.daw.bean.beanImplementation.ReplyBean;
 import net.daw.bean.beanImplementation.UsuarioBean;
-import net.daw.connection.publicConnectionInterface.ConnectionInterface;
-import net.daw.constant.ConnectionConstants;
-import net.daw.dao.daoImplementation_1.UsuarioDao_1;
-import net.daw.factory.ConnectionFactory;
 import net.daw.helper.EncodingHelper;
 import net.daw.service.genericServiceImplementation.GenericServiceImplementation;
 import net.daw.service.publicServiceInterface.ServiceInterface;

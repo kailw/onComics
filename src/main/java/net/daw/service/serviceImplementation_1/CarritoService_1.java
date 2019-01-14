@@ -23,9 +23,6 @@ import net.daw.constant.ConnectionConstants;
 import net.daw.dao.daoImplementation_1.FacturaDao_1;
 import net.daw.dao.daoImplementation_1.LineaDao_1;
 import net.daw.dao.daoImplementation_1.ComicDao_1;
-import net.daw.dao.daoImplementation_2.FacturaDao_2;
-import net.daw.dao.daoImplementation_2.LineaDao_2;
-import net.daw.dao.daoImplementation_2.ComicDao_2;
 import net.daw.factory.ConnectionFactory;
 import net.daw.helper.EncodingHelper;
 import net.daw.service.genericServiceImplementation.GenericServiceImplementation;
@@ -79,7 +76,7 @@ public class CarritoService_1 extends GenericServiceImplementation implements Se
             int indice = -1;
             //recorremos todo el carrito de compras
             for (int i = 0; i < cart.size(); i++) {
-                if (oProductoBean.getId() == cart.get(i).getObj_Producto().getId()) {
+                if (oProductoBean.getId() == cart.get(i).getObj_Comic().getId()) {
                     //Si el producto ya esta en el carrito, obtengo el indice dentro
                     //del arreglo para actualizar al carrito de compras
                     indice = i;
@@ -90,7 +87,7 @@ public class CarritoService_1 extends GenericServiceImplementation implements Se
             if (indice == -1) {
                 //Si es -1 es porque voy a registrar
                 if (existencias >= 1 && existencias > cant) {
-                    oItemBean.setObj_Producto(oProductoBean);
+                    oItemBean.setObj_Comic(oProductoBean);
                     oItemBean.setCantidad(cant);
                     cart.add(oItemBean);
                 } else {
@@ -98,7 +95,7 @@ public class CarritoService_1 extends GenericServiceImplementation implements Se
                     ponemos las existencias maximas de ese producto.                    
                      */
                     if (existencias > 0) {
-                        oItemBean.setObj_Producto(oProductoBean);
+                        oItemBean.setObj_Comic(oProductoBean);
                         oItemBean.setCantidad(existencias);
                         cart.add(oItemBean);
                     }
@@ -177,7 +174,7 @@ public class CarritoService_1 extends GenericServiceImplementation implements Se
 //            int indice = -1;
             //recorremos todo el carrito de compras
             for (int i = 0; i < cart.size(); i++) {
-                if (id == cart.get(i).getObj_Producto().getId()) {
+                if (id == cart.get(i).getObj_Comic().getId()) {
                     contenedor = cart.get(i).getCantidad();
                     resta = contenedor - cantidad;
                     if (resta == 0) {
@@ -284,7 +281,7 @@ public class CarritoService_1 extends GenericServiceImplementation implements Se
                 oLineaBean = new LineaBean();
 
                 oLineaBean.setId_factura(id_factura);
-                oLineaBean.setId_producto(ib.getObj_Producto().getId());
+                oLineaBean.setId_comic(ib.getObj_Comic().getId());
                 oLineaBean.setCantidad(cant);
 
                 oLineaDao.create(oLineaBean);
@@ -292,9 +289,9 @@ public class CarritoService_1 extends GenericServiceImplementation implements Se
                 //RESTAMOS EXISTENCIAS DE LA BBDD
                 oProductoBean = new ComicBean();
 
-                oProductoBean.setId(ib.getObj_Producto().getId());
+                oProductoBean.setId(ib.getObj_Comic().getId());
 
-                oProductoBean = ib.getObj_Producto();
+                oProductoBean = ib.getObj_Comic();
 
                 oProductoBean.setExistencias(oProductoBean.getExistencias() - cant);
 

@@ -10,8 +10,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import net.daw.bean.genericBeanImplementation.GenericBeanImplementation;
 import net.daw.bean.publicBeanInterface.BeanInterface;
-import net.daw.dao.daoImplementation_1.FacturaDao_1;
-import net.daw.dao.daoImplementation_1.ComicDao_1;
 import net.daw.dao.publicDaoInterface.DaoInterface;
 import net.daw.factory.DaoFactory;
 
@@ -24,23 +22,24 @@ public class LineaBean extends GenericBeanImplementation implements BeanInterfac
     @Expose
     private int cantidad;
 
-    @Expose
-    private int id_producto;
+    @Expose(serialize = false)
+    private int id_comic;
 
-    @Expose
+    @Expose(serialize = false)
     private int id_factura;
 
     @Expose(deserialize = false)
-    private ComicBean obj_Producto;
+    private ComicBean obj_Comic;
+
     @Expose(deserialize = false)
     private FacturaBean obj_Factura;
 
-    public ComicBean getObj_Producto() {
-        return obj_Producto;
+    public ComicBean getObj_Comic() {
+        return obj_Comic;
     }
 
-    public void setObj_Producto(ComicBean obj_Producto) {
-        this.obj_Producto = obj_Producto;
+    public void setObj_Comic(ComicBean Obj_Comic) {
+        this.obj_Comic = Obj_Comic;
     }
 
     public FacturaBean getObj_Factura() {
@@ -59,12 +58,12 @@ public class LineaBean extends GenericBeanImplementation implements BeanInterfac
         this.cantidad = cantidad;
     }
 
-    public int getId_producto() {
-        return id_producto;
+    public int getId_comic() {
+        return id_comic;
     }
 
-    public void setId_producto(int id_producto) {
-        this.id_producto = id_producto;
+    public void setId_comic(int id_comic) {
+        this.id_comic = id_comic;
     }
 
     public int getId_factura() {
@@ -82,10 +81,10 @@ public class LineaBean extends GenericBeanImplementation implements BeanInterfac
         this.setCantidad(oResultSet.getInt("cantidad"));
 
         if (expand > 0) {
-            DaoInterface oProductoDao = DaoFactory.getDao(oConnection, "comic", oUsuarioBeanSession);
-            this.setObj_Producto((ComicBean) oProductoDao.get(oResultSet.getInt("id_comic"), expand - 1));
+            DaoInterface oComicDao = DaoFactory.getDao(oConnection, "comic", oUsuarioBeanSession);
+            this.setObj_Comic((ComicBean) oComicDao.get(oResultSet.getInt("id_comic"), expand - 1));
         } else {
-            this.setId_producto(oResultSet.getInt("id_comic"));
+            this.setId_comic(oResultSet.getInt("id_comic"));
         }
 
         if (expand > 0) {
@@ -103,7 +102,7 @@ public class LineaBean extends GenericBeanImplementation implements BeanInterfac
         String strColumns = "";
         strColumns += "id,";
         strColumns += "cantidad,";
-        strColumns += "id_producto,";
+        strColumns += "id_comic,";
         strColumns += "id_factura";
         return strColumns;
     }
@@ -113,7 +112,7 @@ public class LineaBean extends GenericBeanImplementation implements BeanInterfac
         String strColumns = "";
         strColumns += "null,";
         strColumns += cantidad + ",";
-        strColumns += id_producto + ",";
+        strColumns += id_comic + ",";
         strColumns += id_factura;
         return strColumns;
     }
@@ -123,7 +122,7 @@ public class LineaBean extends GenericBeanImplementation implements BeanInterfac
         String strPairs = "";
         strPairs += "id=" + id + ",";
         strPairs += "cantidad=" + cantidad + ",";
-        strPairs += "id_producto=" + id_producto + ",";
+        strPairs += "id_comic=" + id_comic + ",";
         strPairs += "id_factura=" + id_factura;
         strPairs += " WHERE id=" + id;
         return strPairs;

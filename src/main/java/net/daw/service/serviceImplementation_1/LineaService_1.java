@@ -35,7 +35,7 @@ public class LineaService_1 extends GenericServiceImplementation implements Serv
 
     }
 
-    public ReplyBean getLineaFactura() throws Exception {
+    public ReplyBean getlineafactura() throws Exception {
         ReplyBean oReplyBean;
         ConnectionInterface oConnectionPool = null;
         Connection oConnection;
@@ -46,7 +46,7 @@ public class LineaService_1 extends GenericServiceImplementation implements Serv
             oConnectionPool = ConnectionFactory.getConnection(ConnectionConstants.connectionPool);
             oConnection = oConnectionPool.newConnection();
             LineaDao_1 oLineaDao = new LineaDao_1(oConnection, ob, usuarioSession);
-            ArrayList<LineaBean> alLineaBean = oLineaDao.getLineaFactura(iRpp, iPage, id_factura, 1);
+            ArrayList<LineaBean> alLineaBean = oLineaDao.getlineafactura(iRpp, iPage, id_factura, 1);
             Gson oGson = (new GsonBuilder()).excludeFieldsWithoutExposeAnnotation().create();
             oReplyBean = new ReplyBean(200, oGson.toJson(alLineaBean));
         } catch (Exception ex) {
@@ -57,7 +57,7 @@ public class LineaService_1 extends GenericServiceImplementation implements Serv
         return oReplyBean;
     }
 
-    public ReplyBean getcountxlinea() throws Exception {
+    public ReplyBean getcountlinea() throws Exception {
         ReplyBean oReplyBean;
         ConnectionInterface oConnectionPool = null;
         Connection oConnection;
@@ -66,7 +66,7 @@ public class LineaService_1 extends GenericServiceImplementation implements Serv
             oConnectionPool = ConnectionFactory.getConnection(ConnectionConstants.connectionPool);
             oConnection = oConnectionPool.newConnection();
             LineaDao_1 oLineaDao = new LineaDao_1(oConnection, ob, usuarioSession);
-            int registros = oLineaDao.getcountxlinea(id_factura);
+            int registros = oLineaDao.getcountlinea(id_factura);
             Gson oGson = (new GsonBuilder()).excludeFieldsWithoutExposeAnnotation().create();
             oReplyBean = new ReplyBean(200, oGson.toJson(registros));
         } catch (Exception ex) {

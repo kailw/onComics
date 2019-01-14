@@ -38,7 +38,7 @@ public class FacturaService_1 extends GenericServiceImplementation implements Se
         this.ob = ob;
     }
 
-    public ReplyBean getcountFacturaUser() throws Exception {
+    public ReplyBean getcountusuario() throws Exception {
         ReplyBean oReplyBean;
         ConnectionInterface oConnectionPool = null;
         Connection oConnection;
@@ -47,7 +47,7 @@ public class FacturaService_1 extends GenericServiceImplementation implements Se
             oConnectionPool = ConnectionFactory.getConnection(ConnectionConstants.connectionPool);
             oConnection = oConnectionPool.newConnection();
             FacturaDao_1 oFacturaDao = (FacturaDao_1) DaoFactory.getDao(oConnection, ob, usuarioSession);
-            int registros = oFacturaDao.getcountFacturaUser(id);
+            int registros = oFacturaDao.getcountusuario(id);
             Gson oGson = (new GsonBuilder()).excludeFieldsWithoutExposeAnnotation().create();
             oReplyBean = new ReplyBean(200, oGson.toJson(registros));
         } catch (Exception ex) {
@@ -60,7 +60,7 @@ public class FacturaService_1 extends GenericServiceImplementation implements Se
 
     }
 
-    public ReplyBean getpageXusuario() throws Exception {
+    public ReplyBean getpageusuario() throws Exception {
         ReplyBean oReplyBean;
         ConnectionInterface oConnectionPool = null;
         Connection oConnection;
@@ -72,7 +72,7 @@ public class FacturaService_1 extends GenericServiceImplementation implements Se
             oConnectionPool = ConnectionFactory.getConnection(ConnectionConstants.connectionPool);
             oConnection = oConnectionPool.newConnection();
             FacturaDao_1 oFacturaDao = (FacturaDao_1) DaoFactory.getDao(oConnection, ob, usuarioSession);
-            ArrayList<FacturaBean> alLineaBean = oFacturaDao.getpageXusuario(iRpp, iPage, hmOrder, id_usuario, 1);
+            ArrayList<FacturaBean> alLineaBean = oFacturaDao.getpageusuario(iRpp, iPage, hmOrder, id_usuario, 1);
             Gson oGson = (new GsonBuilder()).excludeFieldsWithoutExposeAnnotation().create();
             oReplyBean = new ReplyBean(200, oGson.toJson(alLineaBean));
         } catch (Exception ex) {

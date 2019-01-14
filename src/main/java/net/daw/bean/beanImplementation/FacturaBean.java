@@ -31,10 +31,10 @@ public class FacturaBean extends GenericBeanImplementation implements BeanInterf
     @Expose
     private float iva;
 
-    @Expose
+    @Expose(serialize = false)
     private int id_usuario;
 
-    @Expose
+    @Expose(deserialize = false)
     private UsuarioBean obj_Usuario;
 
     @Expose
@@ -90,13 +90,11 @@ public class FacturaBean extends GenericBeanImplementation implements BeanInterf
         DaoInterface oLineaDao = DaoFactory.getDao(oConnection, "linea", oUsuarioBeanSession);
         if (oLineaDao.getClass() == LineaDao_1.class) {
             LineaDao_1 oLineaDao_1 = (LineaDao_1) oLineaDao;
-            this.setLink_linea(oLineaDao_1.getcountxlinea(this.id));
+            this.setLink_linea(oLineaDao_1.getcountlinea(this.id));
         } else {
             LineaDao_2 oLineaDao_2 = (LineaDao_2) oLineaDao;
-            this.setLink_linea(oLineaDao_2.getcountxlinea(this.id));
+            this.setLink_linea(oLineaDao_2.getcountlinea(this.id));
         }
-//        LineaDao_1 oLineaDao = new LineaDao_1(oConnection, "linea");
-//        this.setLink_linea(oLineaDao.getcountxlinea(this.id));
         if (expand > 0) {
             DaoInterface oUsuarioDao = DaoFactory.getDao(oConnection, "usuario", oUsuarioBeanSession);
             this.setObj_Usuario((UsuarioBean) oUsuarioDao.get(oResultSet.getInt("id_usuario"), expand - 1));

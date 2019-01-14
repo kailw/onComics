@@ -21,6 +21,8 @@ public interface DaoInterface {
 
     public int getcount() throws Exception;
 
+//    public int getcountX() throws Exception;
+
     public BeanInterface create(BeanInterface oBean) throws Exception;
 
     public int update(BeanInterface oBean) throws Exception;

@@ -22,11 +22,16 @@ import net.daw.dao.daoImplementation_0.*;
 import net.daw.dao.daoImplementation_1.AutorDao_1;
 import net.daw.dao.daoImplementation_1.AutorEspecialidadDao_1;
 import net.daw.dao.daoImplementation_1.ColeccionDao_1;
+import net.daw.dao.daoImplementation_1.ComicEditorialDao_1;
 import net.daw.dao.daoImplementation_1.ComicGeneroDao_1;
 import net.daw.dao.daoImplementation_1.EditorialDao_1;
 import net.daw.dao.daoImplementation_1.EspecialidadDao_1;
 import net.daw.dao.daoImplementation_1.GeneroDao_1;
+import net.daw.dao.daoImplementation_2.AutorDao_2;
+import net.daw.dao.daoImplementation_2.AutorEspecialidadDao_2;
 import net.daw.dao.daoImplementation_2.ColeccionDao_2;
+import net.daw.dao.daoImplementation_2.ComicEditorialDao_2;
+import net.daw.dao.daoImplementation_2.ComicGeneroDao_2;
 import net.daw.dao.daoImplementation_2.EditorialDao_2;
 import net.daw.dao.daoImplementation_2.EspecialidadDao_2;
 import net.daw.dao.daoImplementation_2.GeneroDao_2;
@@ -74,7 +79,7 @@ public class DaoFactory {
                         oDao = new ComicGeneroDao_1(oConnection, ob, oUsuarioBeanSession);
                         break;
                     case "comiceditorial":
-                        oDao = new ComicGeneroDao_1(oConnection, ob, oUsuarioBeanSession);
+                        oDao = new ComicEditorialDao_1(oConnection, ob, oUsuarioBeanSession);
                         break;
                     case "especialidad":
                         oDao = new EspecialidadDao_1(oConnection, ob, oUsuarioBeanSession);
@@ -116,6 +121,18 @@ public class DaoFactory {
                     case "coleccion":
                         oDao = new ColeccionDao_2(oConnection, ob, oUsuarioBeanSession);
                         break;
+                    case "autor":
+                        oDao = new AutorDao_2(oConnection, ob, oUsuarioBeanSession);
+                        break;
+                    case "comicgenero":
+                        oDao = new ComicGeneroDao_2(oConnection, ob, oUsuarioBeanSession);
+                        break;
+                    case "comiceditorial":
+                        oDao = new ComicEditorialDao_2(oConnection, ob, oUsuarioBeanSession);
+                        break;
+                    case "autorespecialidad":
+                        oDao = new AutorEspecialidadDao_2(oConnection, ob, oUsuarioBeanSession);
+                        break;
                     case "especialidad":
                         oDao = new EspecialidadDao_2(oConnection, ob, oUsuarioBeanSession);
                         break;
@@ -129,11 +146,11 @@ public class DaoFactory {
                     case "tipousuario":
                         oDao = new TipousuarioDao_0(oConnection, ob, oUsuarioBeanSession);
                         break;
-                    case "tipoproducto":
-                        oDao = new TipoproductoDao_0(oConnection, ob, oUsuarioBeanSession);
-                        break;
                     case "comic":
                         oDao = new ComicDao_0(oConnection, ob, oUsuarioBeanSession);
+                        break;
+                    case "coleccion":
+                        oDao = new ColeccionDao_0(oConnection, ob, oUsuarioBeanSession);
                         break;
                     case "factura":
                         oDao = new FacturaDao_0(oConnection, ob, oUsuarioBeanSession);

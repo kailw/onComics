@@ -26,7 +26,7 @@ public class LineaDao_1 extends GenericDaoImplementation implements DaoInterface
 
     }
 
-    public int getcountxlinea(int idFactura) throws Exception {
+    public int getcountlinea(int idFactura) throws Exception {
         String strSQL = "SELECT COUNT(id) FROM " + ob;
         strSQL += " WHERE id_factura=? ";
         int res = 0;
@@ -52,7 +52,7 @@ public class LineaDao_1 extends GenericDaoImplementation implements DaoInterface
         return res;
     }
 
-    public ArrayList<LineaBean> getLineaFactura(int iRpp, int iPage, int idFactura, Integer expand) throws Exception {
+    public ArrayList<LineaBean> getlineafactura(int iRpp, int iPage, int idFactura, Integer expand) throws Exception {
         String strSQL = "SELECT * FROM " + ob;
         ArrayList<LineaBean> alLineaBean;
         if (iRpp > 0 && iRpp < 100000 && iPage > 0 && iPage < 100000000) {

@@ -10,8 +10,8 @@ package net.daw.bean.beanImplementation;
  * @author kevin
  */
 public class ItemBean {
-    int cantidad;
-    ComicBean obj_Producto;
+    private int cantidad;
+    private ComicBean obj_Comic;
 
     public int getCantidad() {
         return cantidad;
@@ -21,12 +21,14 @@ public class ItemBean {
         this.cantidad = cantidad;
     }
 
-    public ComicBean getObj_Producto() {
-        return obj_Producto;
+    public ComicBean getObj_Comic() {
+        return obj_Comic;
     }
 
-    public void setObj_Producto(ComicBean obj_Producto) {
-        this.obj_Producto = obj_Producto;
+    public void setObj_Comic(ComicBean obj_Comic) {
+        this.obj_Comic = obj_Comic;
     }
+
+
     
 }

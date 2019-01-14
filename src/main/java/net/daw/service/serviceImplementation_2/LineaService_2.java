@@ -9,19 +9,13 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.sql.Connection;
 import java.util.ArrayList;
-import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import net.daw.bean.beanImplementation.LineaBean;
 import net.daw.bean.beanImplementation.ReplyBean;
-import net.daw.bean.beanImplementation.UsuarioBean;
-import net.daw.bean.publicBeanInterface.BeanInterface;
 import net.daw.connection.publicConnectionInterface.ConnectionInterface;
 import net.daw.constant.ConnectionConstants;
-import net.daw.dao.daoImplementation_1.LineaDao_1;
 import net.daw.dao.daoImplementation_2.LineaDao_2;
 import net.daw.factory.ConnectionFactory;
-import net.daw.helper.EncodingHelper;
-import net.daw.helper.ParameterCook;
 import net.daw.service.genericServiceImplementation.GenericServiceImplementation;
 import net.daw.service.publicServiceInterface.ServiceInterface;
 
@@ -41,7 +35,7 @@ public class LineaService_2 extends GenericServiceImplementation implements Serv
 
     }
 
-    public ReplyBean getLineaFactura() throws Exception {
+    public ReplyBean getlineafactura() throws Exception {
         ReplyBean oReplyBean;
         ConnectionInterface oConnectionPool = null;
         Connection oConnection;
@@ -52,7 +46,7 @@ public class LineaService_2 extends GenericServiceImplementation implements Serv
             oConnectionPool = ConnectionFactory.getConnection(ConnectionConstants.connectionPool);
             oConnection = oConnectionPool.newConnection();
             LineaDao_2 oLineaDao = new LineaDao_2(oConnection, ob, usuarioSession);
-            ArrayList<LineaBean> alLineaBean = oLineaDao.getLineaFactura(iRpp, iPage, id_factura, 1);
+            ArrayList<LineaBean> alLineaBean = oLineaDao.getlineafactura(iRpp, iPage, id_factura, 3);
             Gson oGson = (new GsonBuilder()).excludeFieldsWithoutExposeAnnotation().create();
             oReplyBean = new ReplyBean(200, oGson.toJson(alLineaBean));
         } catch (Exception ex) {
@@ -63,7 +57,7 @@ public class LineaService_2 extends GenericServiceImplementation implements Serv
         return oReplyBean;
     }
 
-    public ReplyBean getcountxlinea() throws Exception {
+    public ReplyBean getcountlinea() throws Exception {
         ReplyBean oReplyBean;
         ConnectionInterface oConnectionPool = null;
         Connection oConnection;
@@ -72,7 +66,7 @@ public class LineaService_2 extends GenericServiceImplementation implements Serv
             oConnectionPool = ConnectionFactory.getConnection(ConnectionConstants.connectionPool);
             oConnection = oConnectionPool.newConnection();
             LineaDao_2 oLineaDao = new LineaDao_2(oConnection, ob, usuarioSession);
-            int registros = oLineaDao.getcountxlinea(id_factura);
+            int registros = oLineaDao.getcountlinea(id_factura);
             Gson oGson = (new GsonBuilder()).excludeFieldsWithoutExposeAnnotation().create();
             oReplyBean = new ReplyBean(200, oGson.toJson(registros));
         } catch (Exception ex) {

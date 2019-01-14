@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
 import net.daw.bean.genericBeanImplementation.GenericBeanImplementation;
@@ -180,15 +181,14 @@ public class ComicBean extends GenericBeanImplementation implements BeanInterfac
         this.setExistencias(oResultSet.getInt("existencias"));
         this.setPrecio(oResultSet.getFloat("precio"));
         this.setDescuento(oResultSet.getFloat("descuento"));
-        this.setFoto(oResultSet.getString("foto"));
-        this.setId_coleccion(oResultSet.getInt("id_coleccion"));
+        this.setFoto(oResultSet.getString("foto"));        
         
-//        if (expand > 0) {
-//            DaoInterface ocoleccionDao = DaoFactory.getDao(oConnection, "coleccion", oUsuarioBeanSession);
-//            this.setObj_coleccion((ColeccionBean) ocoleccionDao.get(oResultSet.getInt("id_coleccion"), expand - 1));
-//        } else {
-//            this.setId_coleccion(oResultSet.getInt("id_coleccion"));
-//        }
+        if (expand > 0) {
+            DaoInterface ocoleccionDao = DaoFactory.getDao(oConnection, "coleccion", oUsuarioBeanSession);
+            this.setObj_coleccion((ColeccionBean) ocoleccionDao.get(oResultSet.getInt("id_coleccion"), expand - 1));
+        } else {
+            this.setId_coleccion(oResultSet.getInt("id_coleccion"));
+        }
 
         return this;
     }
@@ -239,16 +239,18 @@ public class ComicBean extends GenericBeanImplementation implements BeanInterfac
 
     @Override
     public String getPairs() {
-        ZoneId defaultZoneId = ZoneId.systemDefault();
-        Instant instant = fechapublicacion.toInstant();
-        LocalDate localDate = instant.atZone(defaultZoneId).toLocalDate();
-
+//        ZoneId defaultZoneId = ZoneId.systemDefault();
+//        
+//        Instant instant = fechapublicacion.toInstant();
+//        
+//        LocalDateTime localDateTime = instant.atZone(defaultZoneId).toLocalDateTime();
+        
         String strPairs = "";
         strPairs += "id=" + id + ",";
-        strPairs += "isbn=" + EncodingHelper.quotate(titulo) + ",";
+        strPairs += "titulo=" + EncodingHelper.quotate(titulo) + ",";
         strPairs += "`desc`=" + EncodingHelper.quotate(desc) + ",";
         strPairs += "isbn=" + EncodingHelper.quotate(isbn) + ",";
-        strPairs += "fechapublicacion=" + EncodingHelper.quotate(localDate.toString()) + ",";
+        strPairs += "fechapublicacion=" + EncodingHelper.quotate(fechapublicacion.toString()) + ",";
         strPairs += "idioma=" + EncodingHelper.quotate(idioma) + ",";
         strPairs += "pagina=" + pagina + ",";
         strPairs += "color=" + color + ",";

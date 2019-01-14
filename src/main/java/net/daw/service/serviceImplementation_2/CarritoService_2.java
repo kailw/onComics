@@ -34,8 +34,8 @@ import net.daw.service.publicServiceInterface.ServiceInterface;
  */
 public class CarritoService_2 extends GenericServiceImplementation implements ServiceInterface {
 
-    HttpServletRequest oRequest;
-    String ob = null;
+    protected HttpServletRequest oRequest;
+    protected String ob = null;
     Gson oGson = new Gson();
     ReplyBean oReplyBean;
     ArrayList<ItemBean> cart = null;
@@ -64,19 +64,19 @@ public class CarritoService_2 extends GenericServiceImplementation implements Se
             }
 
             //Obtenemos el producto que deseamos añadir al carrito
-            Integer id = Integer.parseInt(oRequest.getParameter("producto"));
+            Integer id = Integer.parseInt(oRequest.getParameter("comic"));
             Integer cant = Integer.parseInt(oRequest.getParameter("cantidad"));
             oConnectionPool = ConnectionFactory.getConnection(ConnectionConstants.connectionPool);
             oConnection = oConnectionPool.newConnection();
-            ComicDao_2 oProductoDao = new ComicDao_2(oConnection, "producto", oUsuarioBeanSession);
-            ComicBean oProductoBean = (ComicBean) oProductoDao.get(id, 1);
-            Integer existencias = oProductoBean.getExistencias();
+            ComicDao_2 oComicDao = new ComicDao_2(oConnection, "comic", oUsuarioBeanSession);
+            ComicBean oComicBean = (ComicBean) oComicDao.get(id, 1);
+            Integer existencias = oComicBean.getExistencias();
 
             //Para saber si tenemos agregado el producto al carrito de compras
             int indice = -1;
             //recorremos todo el carrito de compras
             for (int i = 0; i < cart.size(); i++) {
-                if (oProductoBean.getId() == cart.get(i).getObj_Producto().getId()) {
+                if (oComicBean.getId() == cart.get(i).getObj_Comic().getId()) {
                     //Si el producto ya esta en el carrito, obtengo el indice dentro
                     //del arreglo para actualizar al carrito de compras
                     indice = i;
@@ -87,7 +87,7 @@ public class CarritoService_2 extends GenericServiceImplementation implements Se
             if (indice == -1) {
                 //Si es -1 es porque voy a registrar
                 if (existencias >= 1 && existencias > cant) {
-                    oItemBean.setObj_Producto(oProductoBean);
+                    oItemBean.setObj_Comic(oComicBean);
                     oItemBean.setCantidad(cant);
                     cart.add(oItemBean);
                 } else {
@@ -95,7 +95,7 @@ public class CarritoService_2 extends GenericServiceImplementation implements Se
                     ponemos las existencias maximas de ese producto.                    
                      */
                     if (existencias > 0) {
-                        oItemBean.setObj_Producto(oProductoBean);
+                        oItemBean.setObj_Comic(oComicBean);
                         oItemBean.setCantidad(existencias);
                         cart.add(oItemBean);
                     }
@@ -146,7 +146,7 @@ public class CarritoService_2 extends GenericServiceImplementation implements Se
         return oReplyBean;
     }
 
-    public ReplyBean totalproduct() throws Exception {
+    public ReplyBean size() throws Exception {
         HttpSession sesion = oRequest.getSession();
         try {
             cart = (ArrayList<ItemBean>) sesion.getAttribute("cart");
@@ -167,14 +167,14 @@ public class CarritoService_2 extends GenericServiceImplementation implements Se
             cart = (ArrayList<ItemBean>) sesion.getAttribute("cart");
 
             //Obtenemos el producto que deseamos añadir al carrito
-            Integer id = Integer.parseInt(oRequest.getParameter("producto"));
+            Integer id = Integer.parseInt(oRequest.getParameter("comic"));
             Integer cantidad = Integer.parseInt(oRequest.getParameter("cantidad"));
             Integer contenedor, resta = 0;
 //            //Para saber si tenemos agregado el producto al carrito de compras
 //            int indice = -1;
             //recorremos todo el carrito de compras
             for (int i = 0; i < cart.size(); i++) {
-                if (id == cart.get(i).getObj_Producto().getId()) {
+                if (id == cart.get(i).getObj_Comic().getId()) {
                     contenedor = cart.get(i).getCantidad();
                     resta = contenedor - cantidad;
                     if (resta == 0) {
@@ -209,22 +209,22 @@ public class CarritoService_2 extends GenericServiceImplementation implements Se
 //            Integer cant = Integer.parseInt(oRequest.getParameter("cantidad"));
 //            oConnectionPool = ConnectionFactory.getConnection(ConnectionConstants.connectionPool);
 //            oConnection = oConnectionPool.newConnection();
-//            ProductoDao_1 oProductoDao = new ProductoDao_1(oConnection, "producto");
-//            ComicBean oProductoBean = oProductoDao.get(id, 2);
+//            ProductoDao_1 oComicDao = new ProductoDao_1(oConnection, "producto");
+//            ComicBean oComicBean = oComicDao.get(id, 2);
 //
-//            Integer existencias = oProductoBean.getExistencias();
+//            Integer existencias = oComicBean.getExistencias();
 //
 //            for (ItemBean ib : cart) {
 //
 //                if (ib.getObj_Producto().getId() == id) {
 //
-//                    if (oProductoBean.getExistencias() > 0) {
+//                    if (oComicBean.getExistencias() > 0) {
 //
-//                        if (cant <= oProductoBean.getExistencias()) {
+//                        if (cant <= oComicBean.getExistencias()) {
 //                            ib.setCantidad(cant);
 //                        } else {
 //
-//                            ib.setCantidad(oProductoBean.getExistencias());
+//                            ib.setCantidad(oComicBean.getExistencias());
 //                        }
 //                    }
 //                }
@@ -269,9 +269,9 @@ public class CarritoService_2 extends GenericServiceImplementation implements Se
             //YA TENEMOS CREADA LA FACTURA Y FATA HACER BUCLE PARA CREAR LINEAS
             LineaDao_1 oLineaDao;
             LineaBean oLineaBean;
-            ComicDao_2 oProductoDao = new ComicDao_2(oConnection, "producto", oUsuarioBeanSession);
+            ComicDao_2 oComicDao = new ComicDao_2(oConnection, "comic", oUsuarioBeanSession);
             oLineaDao = new LineaDao_1(oConnection, "linea", oUsuarioBeanSession);
-            ComicBean oProductoBean;
+            ComicBean oComicBean;
 
             for (ItemBean ib : cart) {
 
@@ -281,21 +281,21 @@ public class CarritoService_2 extends GenericServiceImplementation implements Se
                 oLineaBean = new LineaBean();
 
                 oLineaBean.setId_factura(id_factura);
-                oLineaBean.setId_producto(ib.getObj_Producto().getId());
+                oLineaBean.setId_comic(ib.getObj_Comic().getId());
                 oLineaBean.setCantidad(cant);
 
                 oLineaDao.create(oLineaBean);
 
                 //RESTAMOS EXISTENCIAS DE LA BBDD
-                oProductoBean = new ComicBean();
+                oComicBean = new ComicBean();
 
-                oProductoBean.setId(ib.getObj_Producto().getId());
+                oComicBean.setId(ib.getObj_Comic().getId());
 
-                oProductoBean = ib.getObj_Producto();
+                oComicBean = ib.getObj_Comic();
 
-                oProductoBean.setExistencias(oProductoBean.getExistencias() - cant);
+                oComicBean.setExistencias(oComicBean.getExistencias() - cant);
 
-                oProductoDao.update(oProductoBean);
+                oComicDao.update(oComicBean);
 
             }
             oConnection.commit();

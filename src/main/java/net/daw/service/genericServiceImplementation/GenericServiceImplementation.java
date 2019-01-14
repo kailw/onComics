@@ -50,9 +50,13 @@ public class GenericServiceImplementation implements ServiceInterface {
             oConnectionPool = ConnectionFactory.getConnection(ConnectionConstants.connectionPool);
             oConnection = oConnectionPool.newConnection();
             DaoInterface oDao = DaoFactory.getDao(oConnection, ob, usuarioSession);
-            BeanInterface oBean = oDao.get(id, 1);
-            Gson oGson = (new GsonBuilder()).excludeFieldsWithoutExposeAnnotation().create();
-            oReplyBean = new ReplyBean(200, oGson.toJson(oBean));
+            BeanInterface oBean = oDao.get(id, 2);
+            if (oBean != null) {
+                Gson oGson = (new GsonBuilder()).excludeFieldsWithoutExposeAnnotation().create();
+                oReplyBean = new ReplyBean(200, oGson.toJson(oBean));
+            } else {
+                oReplyBean = new ReplyBean(500, "No existe " + ob);
+            }
         } catch (Exception ex) {
             oReplyBean = new ReplyBean(500, "ERROR: " + EncodingHelper.escapeQuotes(EncodingHelper.escapeLine(ex.getMessage())));
         } finally {
@@ -100,6 +104,27 @@ public class GenericServiceImplementation implements ServiceInterface {
         }
         return oReplyBean;
     }
+
+//    @Override
+//    public ReplyBean getcountX() throws Exception {
+//        ReplyBean oReplyBean;
+//        ConnectionInterface oConnectionPool = null;
+//        Connection oConnection;
+//        try {
+//            Integer id = Integer.parseInt(oRequest.getParameter("id"));
+//            oConnectionPool = ConnectionFactory.getConnection(ConnectionConstants.connectionPool);
+//            oConnection = oConnectionPool.newConnection();
+//            DaoInterface oDao = DaoFactory.getDao(oConnection, ob, usuarioSession);
+//            int registros = oDao.getcount();
+//            Gson oGson = (new GsonBuilder()).excludeFieldsWithoutExposeAnnotation().create();
+//            oReplyBean = new ReplyBean(200, oGson.toJson(registros));
+//        } catch (Exception ex) {
+//            oReplyBean = new ReplyBean(500, "ERROR: " + EncodingHelper.escapeQuotes(EncodingHelper.escapeLine(ex.getMessage())));
+//        } finally {
+//            oConnectionPool.disposeConnection();
+//        }
+//        return oReplyBean;
+//    }
 
     @Override
     public ReplyBean create() throws Exception {
